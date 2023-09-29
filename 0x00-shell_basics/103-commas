@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -A -v -p --format=comma --group-directories-first | sed 's/, */, /g' | sed 's/\(.*\), \(.*\)\//\1\//g' | tr -d '\n'; echo
+ls -A -v -p --format=comma --group-directories-first | sed 's/, */, /g' | sed 's/\(.*\), \(.*\)\//\1\//g' | tr -d '\n'| echo

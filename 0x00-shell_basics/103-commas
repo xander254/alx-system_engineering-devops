@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -a -v -X --format=comma --group-directories-first -p | grep '/'; ls -a -v -X --format=comma --group-directories-first -p | grep -v '/'
+ls -a -v -X --format=comma --group-directories-first -p | grep '/'| ls -a -v -X --format=comma --group-directories-first -p | grep -v '/'

@@ -1,0 +1,14 @@
+total 48
+drwxr-xr-x 2 xander xander 4096 Oct  3 21:56 .
+drwxr-xr-x 6 xander xander 4096 Oct  3 16:36 ..
+-rwxr--r-- 1 xander xander   50 Oct  3 16:47 0-hello_world
+-rwxr--r-- 1 xander xander   27 Oct  3 16:50 1-confused_smiley
+-rwxr--r-- 1 xander xander   29 Oct  3 16:51 2-hellofile
+-rwxr--r-- 1 xander xander   47 Oct  3 16:59 3-twofiles
+-rwxr--r-- 1 xander xander   30 Oct  3 17:03 4-lastlines
+-rwxr--r-- 1 xander xander   29 Oct  3 17:05 5-firstlines
+-rwxr--r-- 1 xander xander   47 Oct  3 17:13 6-third_line
+-rwxr--r-- 1 xander xander   78 Oct  3 17:19 7-file
+-rwxr--r-- 1 xander xander   36 Oct  3 21:41 8-cwd_state
+-rw-r--r-- 1 xander xander    0 Oct  3 21:56 ls_cwd_content
+-rw-r--r-- 1 xander xander   19 Oct  3 16:37 README.md

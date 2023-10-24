@@ -1,6 +1,5 @@
 #!/bin/bash
-export PATH=$PATH:/action
-
+echo $(('echo $PATH | grep -o ":/" | wcb-l`+1))
 
 
 

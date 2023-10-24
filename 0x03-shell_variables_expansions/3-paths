@@ -1,5 +1,5 @@
 #!/bin/bash
-echo $(('echo $PATH | grep -o ":/" | wcb-l`+1))
+echo $(('echo $PATH | grep -o ":/" | wc -l`+1))
 
 
 

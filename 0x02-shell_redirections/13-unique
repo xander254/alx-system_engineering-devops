@@ -1,2 +1,2 @@
 #!/bin/bash
-sort -u && echo
+tr ' ' '\n' | sort

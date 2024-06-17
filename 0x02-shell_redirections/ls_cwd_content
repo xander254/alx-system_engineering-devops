@@ -1,0 +1,15 @@
+total 52
+drwxr-xr-x 2 alexander alexander 4096 Jun 17 13:11 .
+drwxr-xr-x 5 alexander alexander 4096 Jun 17 12:03 ..
+-rwxr-xr-x 1 alexander alexander   35 Jun 17 11:31 0-hello_world
+-rwxr-xr-x 1 alexander alexander   29 Jun 17 11:38 1-confused_smiley
+-rwxr-xr-x 1 alexander alexander   28 Jun 17 11:40 2-hellofile
+-rwxr-xr-x 1 alexander alexander   48 Jun 17 11:53 3-twofiles
+-rwxr-xr-x 1 alexander alexander   34 Jun 17 12:09 4-lastlines
+-rwxr-xr-x 1 alexander alexander   33 Jun 17 12:21 5-firstlines
+-rwxr-xr-x 1 alexander alexander   30 Jun 17 12:27 6-third_line
+-rwxr-xr-x 1 alexander alexander   82 Jun 17 13:08 7-file
+-rwxr-xr-x 1 alexander alexander   36 Jun 17 13:10 8-cwd_state
+-rw-r--r-- 1 alexander alexander   12 Jun 17 13:08 \*\\'"Best School"\'\\*$\?\*\*\*\*\*:)
+-rw-r--r-- 1 alexander alexander    0 Jun 17 13:11 ls_cwd_content
+-rw-r--r-- 1 alexander alexander   58 Jun 17 11:27 README.md

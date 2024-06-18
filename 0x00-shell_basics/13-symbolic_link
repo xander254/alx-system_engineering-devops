@@ -1,2 +1,2 @@
 #!/bin/bash
-ln __ls__ /bin/ls
+ln -maxdepth 1 __ls__ /bin/ls

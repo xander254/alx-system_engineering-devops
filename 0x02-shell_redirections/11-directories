@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -lad . -mindepth 2  | wc -l
+ls -d */ | grep -v '^\.\/\.\.$'

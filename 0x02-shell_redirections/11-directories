@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -ld . -mindepth 1 -maxdepth 1 | wc -l
+ls -lad . -mindepth 2  | wc -l

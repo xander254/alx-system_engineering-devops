@@ -1,2 +1,2 @@
 #!/bin/bash
-grep "^[A-Z]" | mv * /tmp/u
+grep "-P ^[A-Z]" | mv * /tmp/u

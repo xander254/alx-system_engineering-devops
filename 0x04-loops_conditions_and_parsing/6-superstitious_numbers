@@ -2,16 +2,23 @@
 # print supersticious numbers according to the chinnese, japanesse
 # and italians
 number=1
-while [ "$number" -le 20 ]
-do
-    if [ "$number" -eq 4 ]; then
-        echo "bad luck from China"
-    elif [ "$number" -eq 9 ]; then
-        echo "bad luck from Japan"
-    elif [ "$number" -eq 17 ]; then
-        echo "bad luck from Italy"
-    else
-        echo "$number"
-    fi
-    number=$(( number + 1 ))
+while [ "$number" -le 20 ]; do
+	case $number in 
+		4)
+			echo "$number"
+			echo "bad luck from China"
+			;;
+		9)
+			echo "$number"
+			echo "bad luck from Japan"
+			;;
+		17)
+			echo "$number"
+			echo "bad luck from Italy"
+			;;
+		*)
+			echo "$number"
+			;;
+	esac
+	number=$(( number + 1 ))
 done

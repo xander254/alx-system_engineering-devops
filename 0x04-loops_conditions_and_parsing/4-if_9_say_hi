@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# This script is displaying "Best School" 9 times and Hi on tun 9
+number=1
+while [ $number -le 10 ]
+do
+	if [ "$number" -eq 9 ]; then
+		echo "Hi"
+	else
+		echo "Best School"
+	fi
+	number=$(( number + 1 ))
+done

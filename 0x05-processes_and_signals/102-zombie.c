@@ -5,7 +5,7 @@
 /**
   * create_zombie - Creates a zombie processes
   * Return: The PID of the child process (the zombie) in the parent
-  * process.
+  * process
   */
 
 int create_zombie(void)

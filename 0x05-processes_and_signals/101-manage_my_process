@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# A bash script that manages the manage_my_process..(in pwd)
+DEAMON=./manage_my_process
+PIDFILE=/var/run/my_process.pid
+
+start() {
+	$DEAMON &
+	echo $! > $PIDFILE
+	echo "manage_my_process started"
+}
+stop() {
+	sudo kill "$(cat $PIDFILE)"
+	sudo rm -f $PIDFILE
+	echo "manage_my_process stopped"
+}
+restart() {
+	sudo kill "$(cat $PIDFILE)"
+	sudo rm -f $PIDFILE
+	$DEAMON &
+	echo $! > $PIDFILE
+	echo "manage_my_process restarted"
+}
+case "$1" in
+	start)
+		start
+	;;
+	stop)
+		stop
+	;;
+	restart)
+		restart
+	;;
+	*)
+		echo "Usage: manage_my_process {start|stop|restart}"
+		exit 1
+esac

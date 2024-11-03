@@ -1,0 +1,10 @@
+#!/bin/bash
+if [ "$#" -lt 1 ]
+then
+  echo "No arguments supplied"
+  exit 1
+fi
+if [ -n "$1" ]
+then
+  echo "First argument present $1"
+fi

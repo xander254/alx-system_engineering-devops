@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# A script that displays contents of a file
-while read -r line 
+# A script that displays contents of a file specifically different
+# fields using a delimeter
+cut -d ":" -f 1,3,6 /etc/passwd | while read -r line 
 do
 	echo "$line"
-done < /etc/passwd
+done

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+# A bash script that prints Fizz Buzz 0-100
 for number in {1..100}; do 
     if (( number % 3 == 0 && number % 5 == 0 )); then
         echo "FizzBuzz"  
@@ -11,4 +11,3 @@ for number in {1..100}; do
         echo "$number" 
     fi
 done
-

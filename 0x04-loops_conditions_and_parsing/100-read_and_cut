@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# A script that displays contents of a file
+while read -r line 
+do
+	echo "$line"
+done < /etc/passwd

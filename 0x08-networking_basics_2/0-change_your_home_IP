@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# A scrip to change the home adress and fb adress
+cp /etc/hosts /etc/hosts.old
+# Update host file with new entries
+{
+	echo "127.0.0.2 localhost"
+	echo "8.8.8.8 facebook.com"
+}>> /etc/hosts

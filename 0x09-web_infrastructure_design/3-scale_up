@@ -1,1 +1,13 @@
+Link to file
 https://imgur.com/a/task-3-scale-u-2-load-balancers-3-split-servers-1wQxDFX
+
+Monitoring
+Monitoring has been added on all cmponents, the load balancers  and the servers so that we can tell when there is an issue and so that it can be fixed 
+
+2 Load balancers
+This is to remove the problem where a single balancer can be the single point of failure. With two load balancers traffic can be routed tothe one that is active as the failed one is being diagnosed.
+
+SSL
+This ensures the user gets their data encrypted on transit. This is an issue to our set up as internal communications will be more resource consuming as they must be decrypted
+
+To scale the set up you just have to add a server and replicate the database and the user will be served as expected

@@ -1,3 +1,4 @@
+# This manifest ensures the file /tmp/school exists with specific content, ownership, and permissions
 node default {
   file { '/tmp/school':
     ensure  => 'present',

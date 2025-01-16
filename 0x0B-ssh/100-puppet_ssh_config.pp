@@ -1,6 +1,6 @@
 # A Puppet manifest to set the SSH connection to use a specific key and disable password authentication
 node '100.25.37.14' {
-  file { '/home/ubuntu/.ssh/config': # Absolute path to the SSH config file
+  file { '/etc/ssh/ssh_config': # Absolute path to the SSH config file
     ensure  => file,
     content => @("EOT"),
 Host 100.25.37.14

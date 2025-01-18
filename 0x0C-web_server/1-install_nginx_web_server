@@ -5,3 +5,5 @@ sudo apt install nginx -y
 cd /var/www/html || exit
 echo "Hello World!" | sudo tee index.html > /dev/null
 sudo nginx -s reload
+sudo ufw allow 80
+sudo ufw reload

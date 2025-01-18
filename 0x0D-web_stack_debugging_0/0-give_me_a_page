@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#Debug why curl is ot returning "Hello ALX" after installing an apache server
+sudo apt install apache2 -y
+cd /var/www/html
+echo "Hello ALX" > index.html
+service apache2 restart

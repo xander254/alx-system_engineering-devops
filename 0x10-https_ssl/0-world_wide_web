@@ -1,0 +1,41 @@
+#!/bin/bash
+# shellcheck disable=SC2086
+
+# Function to query and display subdomain information
+query_subdomain() {
+    local subdomain=$1
+    local domain=$2
+
+    # Perform DNS lookup and parse the relevant section
+    dig_output=$(dig ${subdomain}.${domain} | grep -A1 'ANSWER SECTION:' | awk 'NR==2 {print $NF}')
+
+    # Determine the record type
+    if [[ -n "$dig_output" ]]; then
+        record_type="A"
+    else
+        record_type="Unknown"
+        dig_output="Not found"
+    fi
+
+    # Display the result
+    echo "The subdomain ${subdomain} is a ${record_type} record and points to ${dig_output}"
+}
+
+# Validate input arguments
+if [[ -z "$1" ]]; then
+    echo "Usage: $0 <domain> [subdomain]"
+    exit 1
+fi
+
+domain=$1
+subdomain=$2
+
+# If subdomain is provided, query only that subdomain
+if [[ -n "$subdomain" ]]; then
+    query_subdomain $subdomain $domain
+else
+    # Default subdomains to query
+    for sub in www lb-01 web-01 web-02; do
+        query_subdomain $sub $domain
+    done
+fi

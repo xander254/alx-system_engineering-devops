@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/env bash
 # shellcheck disable=SC2086
 
 # Function to query and display subdomain information

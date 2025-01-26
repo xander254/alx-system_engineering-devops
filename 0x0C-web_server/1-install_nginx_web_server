@@ -1,7 +1,16 @@
 #!/usr/bin/env bash
 # Install nginx on my server
-apt-get -y update
-apt-get -install nginx
-ufw allow "NGINX HTTP"
-echo 'Hello World!' > /var/www/html/index.html
+#updates and installation
+sudo apt-get update -y -qq && \
+         sudo apt-get install nginx -y
+#restarting the service
+sudo service nginx start
+#allow nginx on firewall
+sudo ufw allow "Nginx HTTP"
+#User giver permissions for editing 
+#sudo chown -R "$USER":"$USER" /var/www/html
+#sudo chmod -R 755 /var/www
+
+sudo echo -e "Hello World!" > /var/www/html/index.html
+
 service nginx restart

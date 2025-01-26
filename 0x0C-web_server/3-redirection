@@ -9,7 +9,7 @@ sudo service nginx start
 #allow nginx on firewall
 sudo ufw allow "Nginx HTTP"
 #add hello world
-sudo echo -e "Hello World!" > /var/www/html/index.html
+sudo echo -e "Hello World!" | sudo tee /var/www/html/index.html > /dev/null
 #set up nginx config
 NGINX_CONF="/etc/nginx/sites-available/default"
 #back up the file

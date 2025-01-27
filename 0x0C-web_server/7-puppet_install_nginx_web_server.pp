@@ -13,8 +13,8 @@ file { '/var/www/html/index.html':
   content => 'Hello World!',
 }
 
-exec { 'redirect':
-  command  => 'sed -i "241\    rewrite ^/redirect https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default',
+exec { 'redirect_me':
+  command  => 'sed -i "241\    rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default',
   provider => 'shell',
 }
 

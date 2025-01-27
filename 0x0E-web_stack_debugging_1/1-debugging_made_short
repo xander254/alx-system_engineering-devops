@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Fix the server so that it listens to port 80
-echo -e "sudo apt-get update -y -qq\nsudo apt-get install nginx -y\nsudo ufw allow \"Nginx HTTP\"\nsudo service nginx restart" | bash
+echo -e "sudo apt-get update -y -qq\nsudo apt-get install nginx -y\nsudo ufw allow \"Nginx HTTP\"\nsudo service nginx restart\nsleep 2\nsudo service nginx stop" | bash
 

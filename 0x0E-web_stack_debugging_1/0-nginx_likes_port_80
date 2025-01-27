@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# Install nginx on my server
+echo "Installing Nginx and configuring redirections"
+#updates and installation
+sudo apt-get update -y -qq && \
+         sudo apt-get install nginx -y
+#restarting the service
+sudo service nginx start
+#allow nginx on firewall
+sudo ufw allow "Nginx HTTP"
+#set up nginx config
+NGINX_CONF="/etc/nginx/sites-available/default"
+#back up the file
+sudo cp $NGINX_CONF "$NGINX_CONF.bak"
+sudo bash -c "cat > $NGINX_CONF" <<EOL
+server {
+    listen 80;
+    listen [::]:80; 
+    server_name _;
+
+    #Default root & index config
+    location / {
+        root /var/www/html;
+        index index.html index.htm;
+        }
+}
+EOL
+#test config
+sudo nginx -t 
+service nginx restart
+echo "Debug complete"

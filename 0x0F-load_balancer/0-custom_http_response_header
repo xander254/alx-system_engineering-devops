@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+# Install nginx on my server and add a custom header
+
+echo "Installing Nginx"
+#updates and installation
+sudo apt-get update -y -qq && \
+         sudo apt-get install nginx -y
+
+#restarting the service
+sudo service nginx start
+
+echo "allowing nginx on firewall"
+sudo ufw allow "Nginx HTTP"
+echo "adding text to the html and 404 error pages"
+
+#add hello world
+sudo echo -e "Hello World!" | sudo tee /var/www/html/index.html > /dev/null
+
+#add 404 page content
+echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/4-not_found_page_404
+
+#set up nginx config
+echo "config backup"
+NGINX_CONF="/etc/nginx/sites-available/default"
+
+#backup the original file
+sudo cp $NGINX_CONF "$NGINX_CONF.bak"
+
+echo "Adding directives to the new config file"
+sudo bash -c "cat > $NGINX_CONF" <<EOL
+server {
+    listen 80;
+    server_name 100.25.37.14;
+
+    #404 page error
+    error_page 404 /4-not_found_page_404;
+    location = /4-not_found_page_404 {
+        root /usr/share/nginx/html;
+        internal;
+    }
+    #redirection
+    location /redirect_me/ {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }
+    #Default root & index config
+    location / {
+        root /var/www/html;
+        index index.html index.htm;
+        add_header X-Served-By \$hostname;
+        }
+}
+EOL
+
+#testing the config
+sudo nginx -t 
+service nginx restart
+echo "Nginx Set up complete with custom headers, 404 and a redirection"

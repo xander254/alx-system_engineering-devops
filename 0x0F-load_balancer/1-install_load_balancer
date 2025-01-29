@@ -10,25 +10,21 @@ HA_PROXY_CONF="/etc/haproxy/haproxy.cfg"
 sudo cp $HA_PROXY_CONF "$HA_PROXY_CONF.bak"
 #Add directives in the config
 sudo bash -c "cat > $HA_PROXY_CONF" <<EOL
-global
-        log /dev/log    local0
-        log /dev/log    local1 notice
-
 defaults
-        log     global
-        mode    http
-        option  httplog
-        timeout connect 5000
-        timeout client  50000
-        timeout server  50000
-frontend http-in
-        bind *:80
-        default_backend web_servers
+  mode http
+  timeout client 15s
+  timeout connect 10s
+  timeout server 15s
+  timeout http-request 10s
+
+frontend my_front_end
+    bind *:80
+    default_backend web_servers 
 
 backend web_servers
         balance roundrobin
-        server web-01 165003-web-01:80 check
-        server web-02 165003-web-02:80 check
+        server 165003-web-01 100.25.37.14:80 check
+        server 165003-web-02 52.91.149.92:80 check
 EOL
 sudo systemctl haproxy restart
 sudo systemctl enable haproxy

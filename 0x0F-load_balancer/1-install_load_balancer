@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+#A script to set up a haproxy load balancer
+
+#update and install haproxy
+sudo apt-get update -y -qq && \
+         sudo apt-get install haproxy -y
+
+HA_PROXY_CONF="/etc/haproxy/haproxy.cfg"
+#back up the config
+sudo cp $HA_PROXY_CONF "$HA_PROXY_CONF.bak"
+#Add directives in the config
+sudo bash -c "cat > $HA_PROXY_CONF" <<EOL
+global
+        log /dev/log    local0
+        log /dev/log    local1 notice
+
+defaults
+        log     global
+        mode    http
+        option  httplog
+        timeout connect 5000
+        timeout client  50000
+        timeout server  50000
+frontend http-in
+        bind *:80
+        default_backend web_servers
+
+backend web_servers
+        balance roundrobin
+        server web-01 165003-web-01:80 check
+        server web-02 165003-web-02:80 check
+EOL
+sudo systemctl haproxy restart
+sudo systemctl enable haproxy

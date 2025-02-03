@@ -1,7 +1,6 @@
-#!/bin/env bash
-# shellcheck disable=SC2086
-
+#!/usr/bin/env bash
 # Function to query and display subdomain information
+# shellcheck disable=SC2086
 query_subdomain() {
     local subdomain=$1
     local domain=$2

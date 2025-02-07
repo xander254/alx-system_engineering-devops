@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# A script to tell who the current user in a linux system is
+user=$1
+sudo -u "$user" whoami

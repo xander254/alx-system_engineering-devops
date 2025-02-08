@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+# configure nginx running on port 8080 as 'nginx' user   
 echo "Installing Nginx and configuring settings"
 
 # Install nginx 

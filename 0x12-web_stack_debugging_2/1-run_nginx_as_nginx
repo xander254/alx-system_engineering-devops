@@ -6,9 +6,10 @@ echo "Installing Nginx and configuring settings"
 sudo apt-get update -y -qq && sudo apt-get install nginx -y
 
 # Ensure nginx runs as 'nginx' user
-sudo sed -i 's/^user .*/user nginx;/' /etc/nginx/nginx.conf
+#sudo sed -i 's/^user .*/user nginx;/' /etc/nginx/nginx.conf
 
 # Ownership set up
+sudo adduser nginx
 sudo chown -R nginx:nginx /var/log/nginx /var/lib/nginx /var/www/html
 
 # Configure nginx to listen on port 8080

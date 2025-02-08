@@ -1,37 +1,40 @@
 #!/usr/bin/env bash
-# Install nginx on my server
-echo "Installing Nginx and configuring redirections"
-#updates and installation
-sudo apt-get update -y -qq && \
-         sudo apt-get install nginx -y
 
+echo "Installing Nginx and configuring settings"
+
+# Install nginx 
+sudo apt-get update -y -qq && sudo apt-get install nginx -y
+
+# Ensure nginx runs as 'nginx' user
 sudo sed -i 's/^user .*/user nginx;/' /etc/nginx/nginx.conf
-#Owership rights
-sudo chown -R nginx:nginx /var/log/nginx /var/lib/nginx /var/www/html
-#restarting the service
-sudo service nginx start
-#allow nginx on firewall
-sudo ufw allow 8080/tcp
-#set up nginx config
-NGINX_CONF="/etc/nginx/sites-available/default"
-#back up the file
-sudo cp $NGINX_CONF "$NGINX_CONF.bak"
-#Configure nginx to listen to port 8080
-sudo bash -c "cat > $NGINX_CONF" <<EOL
-worker_processes auto;
 
+# Ownership set up
+sudo chown -R nginx:nginx /var/log/nginx /var/lib/nginx /var/www/html
+
+# Configure nginx to listen on port 8080
+NGINX_CONF="/etc/nginx/sites-available/default"
+sudo cp $NGINX_CONF "$NGINX_CONF.bak"  
+
+sudo bash -c "cat > $NGINX_CONF" <<EOL
 server {
     listen 8080 default_server;
-    lisren [::]:8080 default_server
+    listen [::]:8080 default_server;
     server_name _;
 
-    #Default root & index config
+    root /var/www/html;
+    index index.html index.htm;
+    
     location / {
-        root /var/www/html;
-        index index.html index.htm;
-        }
+        try_files \$uri \$uri/ =404;
+    }
 }
 EOL
-#test config & reestart nginx
+
+# Allow traffic on port 8080 through firewall
+sudo ufw allow 8080/tcp
+
+# Test and restart nginx
 sudo nginx -t && sudo systemctl restart nginx
-echo "Nginx setup with non root user complete"
+
+echo "Nginx setup is complete and running on port 8080 as 'nginx' user"
+

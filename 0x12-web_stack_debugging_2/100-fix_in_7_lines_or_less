@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#install iginx, listen to 8080 as user nginx
+sudo apt-get update -y  
+sudo apt-get install -y nginx  
+sudo useradd -r -s /sbin/nologin nginx  
+sudo sed -i 's/user .*/user nginx;\n/' /etc/nginx/nginx.conf  
+echo 'listen 8080;' | sudo tee /etc/nginx/sites-available/default  
+sudo systemctl restart nginx  

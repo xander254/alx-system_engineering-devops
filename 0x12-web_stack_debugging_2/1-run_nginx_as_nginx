@@ -5,27 +5,24 @@ echo "Installing Nginx and configuring redirections"
 sudo apt-get update -y -qq && \
          sudo apt-get install nginx -y
 
-#Crate the nginx user
-echo "Creating the nginx user"
-sudo add user nginx
-
+sudo sed -i 's/^user .*/user nginx;/' /etc/nginx/nginx.conf
 #Owership rights
-sudo chown -R nginx:nginx /var/log/nginx
-sudo chown -R nginx:nginx /var/lib/nginx
+sudo chown -R nginx:nginx /var/log/nginx /var/lib/nginx /var/www/html
 #restarting the service
 sudo service nginx start
 #allow nginx on firewall
-sudo ufw allow "Nginx HTTP"
+sudo ufw allow 8080/tcp
 #set up nginx config
 NGINX_CONF="/etc/nginx/sites-available/default"
 #back up the file
 sudo cp $NGINX_CONF "$NGINX_CONF.bak"
+#Configure nginx to listen to port 8080
 sudo bash -c "cat > $NGINX_CONF" <<EOL
-user nginx;
 worker_processes auto;
 
 server {
-    listen 8080;
+    listen 8080 default_server;
+    lisren [::]:8080 default_server
     server_name _;
 
     #Default root & index config
@@ -35,7 +32,6 @@ server {
         }
 }
 EOL
-#test config
-sudo nginx -t 
-service nginx restart
+#test config & reestart nginx
+sudo nginx -t && sudo systemctl restart nginx
 echo "Nginx setup with non root user complete"

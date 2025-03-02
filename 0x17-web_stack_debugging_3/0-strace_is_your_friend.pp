@@ -1,22 +1,6 @@
-# This Puppet class ensures Apache is correctly installed and running
-class apache_fix {
-
-  package { ['apache2', 'php', 'libapache2-mod-php']:
-    ensure => installed,
-  }
-
-  file { '/var/www/html':
-    ensure  => directory,
-    owner   => 'www-data',
-    group   => 'www-data',
-    mode    => '0755',
-    recurse => true,
-    require => Package['apache2'],
-  }
-
-  service { 'apache2':
-    ensure    => running,
-    enable    => true,
-    subscribe => [ Package['apache2'], Package['php'], Package['libapache2-mod-php'], File['/var/www/html'] ],
-  }
+# Fixes a faulty wordpress site
+exec { 'fix-wordpress':
+  command => 'bash -c "sed -i s/class-wp-locale.phpp/class-wp-locale.php/ \
+/var/www/html/wp-settings.php; service apache2 restart"',
+  path    => '/usr/bin:/usr/sbin:/bin'
 }
